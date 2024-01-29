@@ -202,11 +202,11 @@ function M.attach(bufnr, _)
         end
 
         local cmd_o = string.format(
-            ':lua require("nvim-treesitter.textsubjects").select("%s", false, vim.fn.getpos("."), vim.fn.getpos("."))<cr>',
+            '<cmd>lua require("nvim-treesitter.textsubjects").select("%s", false, vim.fn.getpos("."), vim.fn.getpos("."))<cr>',
             query_name)
         vim.api.nvim_buf_set_keymap(buf, 'o', keymap, cmd_o, { silent = true, noremap = true, desc = desc })
         local cmd_x = string.format(
-            ':lua require("nvim-treesitter.textsubjects").select("%s", true, vim.fn.getpos("\'<"), vim.fn.getpos("\'>"))<cr>',
+            '<cmd>lua require("nvim-treesitter.textsubjects").select("%s", true, vim.fn.getpos("\'<"), vim.fn.getpos("\'>"))<cr>',
             query_name)
         vim.api.nvim_buf_set_keymap(buf, 'x', keymap, cmd_x, { silent = true, noremap = true, desc = desc })
     end
@@ -214,11 +214,11 @@ function M.attach(bufnr, _)
     local prev_selection = configs.get_module('textsubjects').prev_selection
     if prev_selection ~= nil and #prev_selection > 0 then
         local cmd_o =
-        ':lua require("nvim-treesitter.textsubjects").prev_select(vim.fn.getpos("."), vim.fn.getpos("."))<cr>'
+        '<cmd>lua require("nvim-treesitter.textsubjects").prev_select(vim.fn.getpos("."), vim.fn.getpos("."))<cr>'
         vim.api.nvim_buf_set_keymap(buf, 'o', prev_selection, cmd_o,
             { silent = true, noremap = true, desc = 'Previous textsubjects selection' })
         local cmd_x =
-        ':lua require("nvim-treesitter.textsubjects").prev_select(vim.fn.getpos("\'<"), vim.fn.getpos("\'>"))<cr>'
+        '<cmd>lua require("nvim-treesitter.textsubjects").prev_select(vim.fn.getpos("\'<"), vim.fn.getpos("\'>"))<cr>'
         vim.api.nvim_buf_set_keymap(buf, 'x', prev_selection, cmd_x,
             { silent = true, noremap = true, desc = 'Previous textsubjects selection' })
     end
